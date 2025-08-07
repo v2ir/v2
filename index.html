@@ -91,13 +91,44 @@
     <p>Data Limit: ∞</p>
     <p>Data Used: ∞</p>
     <p>Expiration Date: ∞</p>
-
+	<div class="time-box">
+        <div id="persian-date">تاریخ: در حال بارگذاری...</div>
+        <div id="tehran-time">ساعت: در حال بارگذاری...</div>
+    </div>
     <div class="link-input">
         <textarea id="readonlyTextbox" readonly>Loading data...</textarea><br>
         <button class="copy-button" onclick="copyLink()">Copy</button>
     </div>
 
     <script>
+		function updateDateTime() {
+            const now = new Date();
+
+            // ساعت به وقت تهران
+            const tehranTime = now.toLocaleTimeString('fa-IR', {
+                timeZone: 'Asia/Tehran',
+                hour: '2-digit',
+                minute: '2-digit',
+                second: '2-digit'
+            });
+
+            document.getElementById('tehran-time').textContent = 'ساعت: ' + tehranTime;
+
+            // تاریخ شمسی
+            const persianDate = now.toLocaleDateString('fa-IR', {
+                timeZone: 'Asia/Tehran',
+                year: 'numeric',
+                month: 'long',
+                day: 'numeric',
+                weekday: 'long'
+            });
+
+            document.getElementById('persian-date').textContent = 'تاریخ: ' + persianDate;
+        }
+
+        setInterval(updateDateTime, 1000);
+        updateDateTime();
+
 		fetch('data.txt')
             .then(response => {
                 if (!response.ok) {
