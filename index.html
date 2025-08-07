@@ -91,9 +91,12 @@
     <p>Data Limit: ∞</p>
     <p>Data Used: ∞</p>
     <p>Expiration Date: ∞</p>
-
+	<div class="time-box">
+        <div id="persian-date">تاریخ: در حال با...</div>
+        <div id="tehran-time">ساعت: در حال بار...</div>
+    </div>
     <div class="link-input">
-        <textarea id="readonlyTextbox" readonly>در تاریخ ۱۶ مرداد ۱۴۰۴ ساعت ۲۲:۳۶:۰۷ بروزرسانی شد.
+        <textarea id="readonlyTextbox" readonly>در تاریخ ۱۶ مرداد ۱۴۰۴ ساعت ۲۲:۵۳:۳۰ بروزرسانی شد.
 vless://9926ee97-4398-48dd-b263-2863c62f5c41@COnFIDeNt-CLUb.SeoTooLsforYoU.CO.uK:80?path=%2F&security=&encryption=none&type=ws#%F0%9F%87%A9%F0%9F%87%AA%20Germany%20ws%20%28tal%29
 vless://34797f17-09a1-400c-9f4b-275718d62a0f@brainY-party.sEOToOlsfORyOU.CO.uk:80?path=%2F&security=&encryption=none&type=ws#%F0%9F%87%A9%F0%9F%87%AA%20Germany%20ws%20%28tal%29
 vless://9570a079-f83f-4454-88d0-884057c57a35@FruItfUl-exchANgE.SeotOolsFORYoU.cO.Uk:80?path=%2F&security=&encryption=none&type=ws#%F0%9F%87%A9%F0%9F%87%AA%20Germany%20ws%20%28tal%29
@@ -152,6 +155,34 @@ vless://502ce704-dcec-4f92-9489-505c99ce6c89@f10.sarasimano.com:2096?path=%2F&se
     </div>
 
     <script>
+	function updateDateTime() {
+            const now = new Date();
+
+            // ساعت به وقت تهران
+            const tehranTime = now.toLocaleTimeString("fa-IR", {
+                timeZone: "Asia/Tehran",
+                hour: "2-digit",
+                minute: "2-digit",
+                second: "2-digit"
+            });
+
+            document.getElementById("tehran-time").textContent = tehranTime;
+
+            // تاریخ شمسی
+            const persianDate = now.toLocaleDateString("fa-IR", {
+                timeZone: "Asia/Tehran",
+                year: "numeric",
+                month: "long",
+                day: "numeric",
+                weekday: "long"
+            });
+
+            document.getElementById("persian-date").textContent = persianDate;
+        }
+
+        setInterval(updateDateTime, 1000);
+        updateDateTime();
+		
         function copyLink() {
             const textarea = document.getElementById("readonlyTextbox");
             textarea.select();
