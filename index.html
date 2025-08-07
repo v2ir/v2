@@ -144,21 +144,6 @@
 
         setInterval(updateDateTime, 1000);
         updateDateTime();
-
-		<!-- fetch('data.txt')
-            .then(response => {
-                if (!response.ok) {
-                    throw new Error('مشکل در بارگذاری فایل');
-                }
-                return response.text();
-            })
-            .then(data => {
-                document.getElementById('readonlyTextbox').value = data.trim();
-            })
-            .catch(error => {
-                document.getElementById('readonlyTextbox').value = 'خطا در بارگذاری اطلاعات';
-                console.error('Error:', error);
-            }); -->
         function copyLink() {
             const textarea = document.getElementById("readonlyTextbox");
             textarea.select();
