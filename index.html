@@ -112,7 +112,7 @@
                 second: '2-digit'
             });
 
-            document.getElementById('tehran-time').textContent = 'ساعت: ' + tehranTime;
+            document.getElementById('tehran-time').textContent = tehranTime;
 
             // تاریخ شمسی
             const persianDate = now.toLocaleDateString('fa-IR', {
@@ -123,7 +123,7 @@
                 weekday: 'long'
             });
 
-            document.getElementById('persian-date').textContent = 'تاریخ: ' + persianDate;
+            document.getElementById('persian-date').textContent = persianDate;
         }
 
         setInterval(updateDateTime, 1000);
